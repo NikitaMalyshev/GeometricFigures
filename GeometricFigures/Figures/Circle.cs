@@ -13,13 +13,9 @@ namespace GeometricFigures.Figures
         {
             set
             {
-                if (value < 0)
+                if (value < 0 || value == 0)
                 {
-                    throw new ArgumentNullException($"{nameof(Radius)} cannot be negative number", nameof(Radius));
-                }
-                else if (value == 0)
-                {
-                    throw new ArgumentNullException($"{nameof(Radius)} cannot be zero", nameof(Radius));
+                    throw new ArgumentException($"{nameof(Radius)} value cannot be negative or zero number", nameof(Radius));
                 }
                 radius = value;
             }
