@@ -1,33 +1,21 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using GeometricFigures.Figures;
+using GeometricFigures.Figures.Triangles;
 
-namespace GeometricFigures.Test.Figures.Test
+namespace GeometricFigures.Test.Figures.Test.Triangles.Test
 {
     [TestClass]
-    public class CircleTest
+    public class EquilateralTriangleTest
     {
-        private Circle circle { get; set; }
-
-        [TestInitialize]
-        public void CircleTest_TestInitialize()
-        {
-            circle = new Circle(2);
-        }
-
-        [TestCleanup]
-        public void CircleTest_TestCleanup()
-        {
-            circle = null;
-        }
+        private EquilateralTriangle triangle { get; set; }
 
         [TestMethod]
-        public void CreateInstanceWithNegativeRadius_ReturnsArgumentException()
+        public void CreateInstanceWithNegativeSideLength_ReturnsArgumentException()
         {
             //Act and Assert
             try
             {
-                circle = new Circle(-2);
+                triangle = new EquilateralTriangle(-4);
                 Assert.Fail("There was no ArgumentException");
             }
             catch (ArgumentException)
@@ -37,12 +25,12 @@ namespace GeometricFigures.Test.Figures.Test
         }
 
         [TestMethod]
-        public void CreateInstanceWithZeroRadius_ReturnsArgumentException()
+        public void CreateInstanceWithZeroSizeLength_ReturnsArgumentException()
         {
             //Act and Assert
             try
             {
-                circle = new Circle(0);
+                triangle = new EquilateralTriangle(0);
                 Assert.Fail("There was no ArgumentException");
             }
             catch (ArgumentException)
@@ -55,9 +43,11 @@ namespace GeometricFigures.Test.Figures.Test
         public void GetArea_AreEqual()
         {
             //Arrange
-            double arrangeArea = Math.PI * Math.Pow(2, 2);
+            double sideLength = 5.3;
+            triangle = new EquilateralTriangle(sideLength);
+            double arrangeArea = (Math.Sqrt(3) / 4) * Math.Pow(sideLength, 2);
             //Act
-            double resultArea = circle.GetArea();
+            double resultArea = triangle.GetArea();
             // Assert
             Assert.AreEqual(arrangeArea, resultArea);
         }
@@ -66,9 +56,11 @@ namespace GeometricFigures.Test.Figures.Test
         public void GetPerimeter_AreEqual()
         {
             //Arrange
-            double arrangePerimeter = 2 * Math.PI * 2;
+            double sideLength = 5.3;
+            triangle = new EquilateralTriangle(sideLength);
+            double arrangePerimeter = sideLength * 3;
             //Act
-            double resultPerimeter = circle.GetPerimeter();
+            double resultPerimeter = triangle.GetPerimeter();
             // Assert
             Assert.AreEqual(arrangePerimeter, resultPerimeter);
         }

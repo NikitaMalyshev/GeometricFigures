@@ -1,6 +1,7 @@
 ﻿using System;
+using GeometricFigures.Resources;
 
-namespace GeometricFigures.Figures
+namespace GeometricFigures.Figures.Сircles
 {
     /// <summary>
     /// A class that describes a geometric figure - a circle
@@ -9,21 +10,13 @@ namespace GeometricFigures.Figures
     {
         private double radius;
 
-        public double Radius
-        {
-            set
-            {
-                if (value < 0 || value == 0)
-                {
-                    throw new ArgumentException($"{nameof(Radius)} value cannot be negative or zero number", nameof(Radius));
-                }
-                radius = value;
-            }
-        }
-
         public Circle(double radius)
         {
-            this.Radius = radius;
+            if (radius <= 0)
+            {
+                throw new ArgumentException(ErrorRes.CircleRadiusLenthError);
+            }
+            this.radius = radius;
         }
 
         /// <summary>

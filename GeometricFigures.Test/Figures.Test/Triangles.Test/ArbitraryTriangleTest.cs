@@ -1,24 +1,21 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using GeometricFigures.Figures;
+using GeometricFigures.Figures.Triangles;
 
-namespace GeometricFigures.Test.Figures.Test
+namespace GeometricFigures.Test.Figures.Test.Triangles.Test
 {
     [TestClass]
-    public class TriangleTest
+    public class ArbitraryTriangleTest
     {
-        private double sideA { get; set; }
-        private double sideB { get; set; }
-        private double sideC { get; set; }
-        private Triangle triangle { get; set; }
+        private ArbitraryTriangle triangle { get; set; }
 
         [TestMethod]
-        public void CreateInstanceWithNegativeSizeA_ReturnsArgumentException()
+        public void CreateInstanceWithNegativeFirstSideLength_ReturnsArgumentException()
         {
             //Act and Assert
             try
             {
-                triangle = new Triangle(-4, 5, 6);
+                triangle = new ArbitraryTriangle(-4, 5, 6);
                 Assert.Fail("There was no ArgumentException");
             }
             catch (ArgumentException)
@@ -28,12 +25,12 @@ namespace GeometricFigures.Test.Figures.Test
         }
 
         [TestMethod]
-        public void CreateInstanceWithZeroSizeA_ReturnsArgumentException()
+        public void CreateInstanceWithZeroFirstSizeLength_ReturnsArgumentException()
         {
             //Act and Assert
             try
             {
-                triangle = new Triangle(0, 5, 6);
+                triangle = new ArbitraryTriangle(0, 5, 6);
                 Assert.Fail("There was no ArgumentException");
             }
             catch (ArgumentException)
@@ -43,12 +40,12 @@ namespace GeometricFigures.Test.Figures.Test
         }
 
         [TestMethod]
-        public void CreateInstanceWithNegativeSizeB_ReturnsArgumentException()
+        public void CreateInstanceWithNegativeSecondSideLength_ReturnsArgumentException()
         {
             //Act and Assert
             try
             {
-                triangle = new Triangle(4, -5, 6);
+                triangle = new ArbitraryTriangle(4, -5, 6);
                 Assert.Fail("There was no ArgumentException");
             }
             catch (ArgumentException)
@@ -58,12 +55,12 @@ namespace GeometricFigures.Test.Figures.Test
         }
 
         [TestMethod]
-        public void CreateInstanceWithZeroSizeB_ReturnsArgumentException()
+        public void CreateInstanceWithZeroSecondSizeLength_ReturnsArgumentException()
         {
             //Act and Assert
             try
             {
-                triangle = new Triangle(4, 0, 6);
+                triangle = new ArbitraryTriangle(4, 0, 6);
                 Assert.Fail("There was no ArgumentException");
             }
             catch (ArgumentException)
@@ -73,12 +70,12 @@ namespace GeometricFigures.Test.Figures.Test
         }
 
         [TestMethod]
-        public void CreateInstanceWithNegativeSizeC_ReturnsArgumentException()
+        public void CreateInstanceWithNegativeThirdSideLength_ReturnsArgumentException()
         {
             //Act and Assert
             try
             {
-                triangle = new Triangle(4, 5, -6);
+                triangle = new ArbitraryTriangle(4, 5, -6);
                 Assert.Fail("There was no ArgumentException");
             }
             catch (ArgumentException)
@@ -88,12 +85,12 @@ namespace GeometricFigures.Test.Figures.Test
         }
 
         [TestMethod]
-        public void CreateInstanceWithZeroSizeC_ReturnsArgumentException()
+        public void CreateInstanceWithZeroThirdSizeLength_ReturnsArgumentException()
         {
             //Act and Assert
             try
             {
-                triangle = new Triangle(4, 5, 0);
+                triangle = new ArbitraryTriangle(4, 5, -6);
                 Assert.Fail("There was no ArgumentException");
             }
             catch (ArgumentException)
@@ -103,30 +100,15 @@ namespace GeometricFigures.Test.Figures.Test
         }
 
         [TestMethod]
-        public void GetArea_RightAngledTriangle_AreEqual()
+        public void GetArea_AreEqual()
         {
             //Arrange
-            sideA = 10;
-            sideB = 26;
-            sideC = 24;
-            triangle = new Triangle(sideA, sideB, sideC);
-            double arrangeArea = (10 * 24) / 2;
-            //Act
-            double resultArea = triangle.GetArea();
-            // Assert
-            Assert.AreEqual(arrangeArea, resultArea);
-        }
-
-        [TestMethod]
-        public void GetArea_OtherTriangle_AreEqual()
-        {
-            //Arrange
-            sideA = 5.3;
-            sideB = 6.4;
-            sideC = 7.6;
-            triangle = new Triangle(sideA, sideB, sideC);
-            double arrangePerimeter = (sideA + sideB + sideC) / 2;
-            double arrangeArea = Math.Sqrt(arrangePerimeter * (arrangePerimeter - sideA) * (arrangePerimeter - sideB) * (arrangePerimeter - sideC));
+            double firstSideLength = 5.3;
+            double secondSideLength = 6.4;
+            double thirdSideLength = 7.6;
+            triangle = new ArbitraryTriangle(firstSideLength, secondSideLength, thirdSideLength);
+            double arrangePerimeter = (firstSideLength + secondSideLength + thirdSideLength) / 2;
+            double arrangeArea = Math.Sqrt(arrangePerimeter * (arrangePerimeter - firstSideLength) * (arrangePerimeter - secondSideLength) * (arrangePerimeter - thirdSideLength));
             //Act
             double resultArea = triangle.GetArea();
             // Assert
@@ -137,11 +119,11 @@ namespace GeometricFigures.Test.Figures.Test
         public void GetPerimeter_AreEqual()
         {
             //Arrange
-            sideA = 5.3;
-            sideB = 6.4;
-            sideC = 7.6;
-            triangle = new Triangle(sideA, sideB, sideC);
-            double arrangePerimeter = (sideA + sideB + sideC) / 2;
+            double firstSideLength = 5.3;
+            double secondSideLength = 6.4;
+            double thirdSideLength = 7.6;
+            triangle = new ArbitraryTriangle(firstSideLength, secondSideLength, thirdSideLength);
+            double arrangePerimeter = (firstSideLength + secondSideLength + thirdSideLength);
             //Act
             double resultPerimeter = triangle.GetPerimeter();
             // Assert
